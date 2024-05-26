@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Major+Mono+Display&family=Poetsen+One&display=swap');
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Header */
+
+header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AppNav {
+  display: flex;
+  height: 4em;
+  justify-content: space-between;
+  background-color: rgb(114, 4, 85, 0.5);
+  border: 1px solid rgb(145, 10, 103);
+  width: 50em;
+  margin: 25px auto;
+  border-radius: 10px;
+  
+}
+
+.LeftNav {
+  font-size: 24px;
+  font-weight: 800;
+  color: rgb(65, 176, 110);
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 36px;
+}
+
+.RightNav {
+  font-size: 18px;
+  font-weight: 600;
+  gap: 40px;
+  padding-right: 20px;
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+}
+
+.RightNav :hover {
+  font-weight: 700;
+  color: rgb(255, 0, 0);
+}
+
+.Reset :hover {
+  background-color: red;
+}
+
+/* Content */
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+}
+
+input {
+  background-color: rgb(60, 7, 83, 0.25);
+  border: 1px solid rgb(145, 10, 103);
+  margin-top: 10px;
+  height: 3em;
+  width: 30em;
+  border-radius: 10px;
+}
+
+label {
+  display: flex;
+  padding-right: 50px;
+  font-weight: 600;
+}
+
+.Stats {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 50px;
+  font-weight: 600;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.CurrentWords {
+  background-color: rgb(60, 7, 83, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40em;
+  height: 20em;
+  border-radius: 10px;
+}
+
+/* Footer */
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: rgb(65, 176, 110);
+  font-family: "Major Mono Display", monospace;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5em;
+  background-color: rgb(3, 6, 55, 0.3); /* Optional: Add a background color for better visibility */
+}
+
+.AppFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Media queries */
+
+@media (max-width: 1250px) {
+
+  Footer {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .AppNav {
+    flex-direction: column;
+    width: 50%;
+    margin: 20px auto;
+  }
+
+  .RightNav {
+    font-size: 16px;
+    gap: 20px;
+    padding-right: 10px;
+  }
+
+  .LeftNav {
+    font-size: 20px;
+  }
+
+  .Reset {
+    width: 4em;
+    height: 2.5em;
+  }
+
+  Footer {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .AppNav {
+    width: 90%;
+  }
+
+  .RightNav {
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .LeftNav {
+    font-size: 18px;
+  }
+
+  main {
+    padding-top: 5em;
+  }
+
+  .Reset {
+    width: 5em;
+    height: 3em;
+  }
+}
