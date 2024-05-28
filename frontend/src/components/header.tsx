@@ -8,8 +8,8 @@ export function Header() {
           </ul>
           <ul className='RightNav'>
             <li>30sec</li>
+            <li>45sec</li>
             <li>60sec</li>
-            <li className='Reset'>Reset</li>
           </ul>
         </nav>
       </header>
