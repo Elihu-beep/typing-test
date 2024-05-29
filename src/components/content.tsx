@@ -28,15 +28,20 @@ const ResetButton = () => {
   };
 
 export function Content() {
+    const firstWords = words.slice(0,5)
     const [value, setValue] = useState('')
     const [currentIndex] = useState(0)
     const [typedWords, setTypedWords] = useState([])
+    const [testWords, setTestWords]  = useState([])
 
     const handleChange = (e) => {
         setValue(e.target.value)
     }
 
     useEffect(() => {
+
+        setTestWords(firstWords)
+
         const handleKeyDown = (e) => {
             if (e.keyCode === 32) {
                 console.log("spacebar is working")
@@ -60,25 +65,35 @@ export function Content() {
     
         if (typedWord === currentWord) {
           const newTypedWords = [...typedWords, typedWord];
-          console.log(newTypedWords)
           setTypedWords(newTypedWords);
           words.shift()
-          
+          console.log(typedWords)
           setValue('');
         }
+        test()
       };
+
+      const test = () => {
+        const numOfNewTyped = typedWords.length + 1
+        console.log(numOfNewTyped)
+
+        if (numOfNewTyped === 5) {
+            console.log("ok")
+        }
+      }
     
+
     return(
         <main>
             <div className="Layout">
                 <div className="Stats">
                     <p>Time: 60</p>
-                    <p>WPM: {value}</p>
+                    <p>WPM: over 9000</p>
                 </div>
                 <div className="CurrentWords">
-                    {words.map((word, index) => (
+                    {testWords.map((word, index) => (
                         <text key={index} className={"words"}>
-                            {word}
+                            {word + "-"}
                         </text>
                 ))}
                 </div>
