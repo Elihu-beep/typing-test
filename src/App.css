@@ -106,10 +106,6 @@ label {
   border-radius: 10px;
 }
 
-.words{
-  background-color: red;
-}
-
 .inputContainer {
   display: flex;
   justify-content:baseline;

@@ -1,4 +1,4 @@
-const listOfWords = [
+export const listOfWords = [
 "crowd",
 "tomatoes",
 "button",
@@ -70,7 +70,6 @@ const listOfWords = [
 "middle",
 "feeble",
 "laughable",
-"long-term",
 "nest",
 "harmonious",
 "aspiring",
@@ -117,7 +116,6 @@ const listOfWords = [
 "yam",
 "quill",
 "risk",
-"wide-eyed",
 "friends",
 "shaky",
 "adamant",

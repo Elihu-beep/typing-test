@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
+import { listOfWords } from "../assets/words";
 
-const words = [
-    "apple",
-    "banana",
-    "chair",
-    "dog",
-    "elephant",
-    "fish",
-    "guitar",
-    "hat",
-    "jacket",
-    "kite",
-    "lamp",
-    "monkey",
-    "notebook",
-    "orange",
-    "piano",
-    "queen"
-  ];
+
+const words = listOfWords
+
+  const shuffle = (arr) => {
+    let currentIndex = words.length
+    while (currentIndex != 0) {
+      let randomInxed = Math.floor(Math.random() * currentIndex)
+      currentIndex--;
+
+      [arr[currentIndex], arr[randomInxed]] = [
+        arr[randomInxed], arr[currentIndex]
+      ]
+    }
+
+  }
+
+  shuffle(words)
 
 const ResetButton = () => {
     return (
@@ -36,7 +36,7 @@ export function Content() {
 
     const handleChange = (e) => {
         setValue(e.target.value)
-    }
+    } 
 
     useEffect(() => {
 
@@ -92,9 +92,9 @@ export function Content() {
                 </div>
                 <div className="CurrentWords">
                     {testWords.map((word, index) => (
-                        <text key={index} className={"words"}>
+                        <div key={index} className={"words"}>
                             {word + "-"}
-                        </text>
+                        </div>
                 ))}
                 </div>
                 <div className="inputContainer">
