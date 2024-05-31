@@ -1,5 +1,8 @@
+import { Component } from "react"
+
 
 export function Header() {
+
     return(
         <header>
         <nav className='AppNav'>

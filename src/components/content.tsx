@@ -1,31 +1,9 @@
 import { useEffect, useState } from "react";
-import { listOfWords } from "../assets/words";
+import { words } from "../assets/words";
+import { shuffle } from "../shuffle";
+import { ResetButton } from "./resetButton";
 
-
-const words = listOfWords
-
-  const shuffle = (arr) => {
-    let currentIndex = words.length
-    while (currentIndex != 0) {
-      let randomInxed = Math.floor(Math.random() * currentIndex)
-      currentIndex--;
-
-      [arr[currentIndex], arr[randomInxed]] = [
-        arr[randomInxed], arr[currentIndex]
-      ]
-    }
-
-  }
-
-  shuffle(words)
-
-const ResetButton = () => {
-    return (
-      <button className="resetButton">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg>
-      </button>
-    );
-  };
+shuffle(words)
 
 export function Content() {
     const firstWords = words.slice(0,5)
@@ -33,14 +11,36 @@ export function Content() {
     const [currentIndex] = useState(0)
     const [typedWords, setTypedWords] = useState([])
     const [testWords, setTestWords]  = useState([])
+    const [time, setTime] = useState(30)
+    const [isActive, setIsActive] = useState(false)
+    const [elapsedTime, setElapsedTime] = useState(0) 
 
     const handleChange = (e) => {
+      if (time != 0){
         setValue(e.target.value)
-    } 
+      }
+        
+    }
 
     useEffect(() => {
+      let interval = null;
+      if (isActive && time > 0) {
+          interval = setInterval(() => {
+              setTime((prevTime) => prevTime - 1);
+          }, 1000);
+          setElapsedTime((elapsedTime) => elapsedTime + 1)
+          console.log(elapsedTime)
+      } else if (time <= 0) {
+          setIsActive(false);
+          clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+  }, [isActive, time]);
 
-        setTestWords(firstWords)
+    useEffect(() => {
+      setTestWords(firstWords)
+
+      addEventListener("keypress", (e) => {setIsActive(true)})
 
         const handleKeyDown = (e) => {
             if (e.keyCode === 32) {
@@ -87,13 +87,13 @@ export function Content() {
         <main>
             <div className="Layout">
                 <div className="Stats">
-                    <p>Time: 60</p>
-                    <p>WPM: over 9000</p>
+                    <p>Time: {time}</p>
+                    <p>WPM: {Math.round(typedWords.length / elapsedTime * 60)}</p>
                 </div>
                 <div className="CurrentWords">
                     {testWords.map((word, index) => (
                         <div key={index} className={"words"}>
-                            {word + "-"}
+                            <div className={index === 0 ? "currentWord" : ""}>{word}</div>
                         </div>
                 ))}
                 </div>
