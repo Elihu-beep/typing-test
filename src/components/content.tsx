@@ -99,8 +99,8 @@ export function Content() {
                     </label>
                     <ResetButton onPress={reset} />
                 </div>
-
             </div>
         </main>
+        
     )
 }

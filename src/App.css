@@ -2,14 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Major+Mono+Display&family=Poetsen+One&display=swap');
 
 
-body {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  height: 100vh;
-  overflow: hidden;
-}
-
 ul {
   list-style-type: none;
   display: flex;
@@ -52,7 +44,7 @@ header {
 main {
   display: flex;
   justify-content: center;
-  height: 50vh;
+  max-height: 20vh;
   font-family: "Major Mono Display", monospace;
   font-weight: 400;
 }
@@ -125,14 +117,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
 }
 
 .AppFooter {
   display: flex;
-  height: 3em;
   justify-content: space-between;
   width: 40em;
-  margin: 18em auto;
+  margin: 36em auto;
   border-radius: 10px;
   justify-content: center;
   padding: 10px;
@@ -142,54 +138,64 @@ footer {
 
 
 
-/* Media queries */
-
 @media (max-width: 768px) {
   .AppNav {
     flex-direction: column;
-    width: 80%;
+    width: 90%;
     margin: 20px auto;
+    font-size: 8px;
   }
 
-  .HeaderText {
-    font-size: 28px;
-  }
-
-  .RightNav, .LeftNav {
-    font-size: 16px;
-  }
-
-  .Reset {
-    width: 6em;
-    height: 2.5em;
-  }
   .CurrentWords {
+    flex-direction: column;
+    width: 100%;
     max-width: 30em;
+    height: auto;
   }
 
   input {
+    width: 100%;
     max-width: 15em;
     max-height: 2em;
   }
+
+  .currentWord {
+    width: 100%;
+    max-width: none;
+  }
+
+  .inputContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+  }
+
   footer {
-    width: 90%;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .AppNav {
-    width: 80%;
+    width: 100%;
+    margin: 10px auto;
   }
 
-  .HeaderText {
-    font-size: 24px;
+  .CurrentWords {
+    width: 100%;
+    max-width: none;
   }
 
-  main {
-    padding-top: 5em;
-    font-size: 14px;
-    width: 50%;
-    margin-left: 8em;
+  input {
+    width: 100%;
+    max-width: none;
   }
 
+  .currentWord {
+    width: 100%;
+  }
+
+  .inputContainer {
+    width: 100%;
+  }
 }
