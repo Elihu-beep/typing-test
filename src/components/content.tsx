@@ -9,13 +9,13 @@ export function Content() {
     const firstWords = words.slice(0,5)
     const [value, setValue] = useState('')
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [typedWords, setTypedWords] = useState([])
+    const [typedWords, setTypedWords] = useState<string[]>([]);
     const [wordsShown, setWordsShown]  = useState([])
     const [time, setTime] = useState(60)
     const [isActive, setIsActive] = useState(false)
     const [elapsedTime, setElapsedTime] = useState(0) 
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
       if (time != 0){
         setValue(e.target.value)
       }
@@ -25,7 +25,7 @@ export function Content() {
       let interval = null;
       if (isActive && time > 0) {
           interval = setInterval(() => {
-              setTime((prevTime) => prevTime - 1);
+            setTime((prevTime) => (prevTime && prevTime > 0 ? prevTime - 1 : 0));
           }, 1000);
           setElapsedTime((elapsedTime) => elapsedTime + 1)
       } else if (time <= 0) {
@@ -38,9 +38,9 @@ export function Content() {
     useEffect(() => {
         setWordsShown(firstWords)
 
-      addEventListener("keypress", (e) => {setIsActive(true)})
+      addEventListener("keypress", () => {setIsActive(true)})
 
-        const handleKeyDown = (e) => {
+        const handleKeyDown = (e: any) => {
             if (e.keyCode === 32) {
                 e.preventDefault()
                 checkWord()
