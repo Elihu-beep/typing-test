@@ -3,29 +3,29 @@ import { words } from "../assets/words";
 import { shuffle } from "../shuffle";
 import { ResetButton } from "./resetButton";
 
-shuffle(words)
+shuffle(words as string[])
 
 export function Content() {
     const firstWords = words.slice(0,5)
     const [value, setValue] = useState('')
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [typedWords, setTypedWords] = useState<string[]>([]);
-    const [wordsShown, setWordsShown]  = useState([])
-    const [time, setTime] = useState(60)
+    const [typedWords, setTypedWords] = useState<string[]>([])
+    const [wordsShown, setWordsShown]  = useState<string[]>([])
+    const [time, setTime] = useState<number | undefined>(60)
     const [isActive, setIsActive] = useState(false)
-    const [elapsedTime, setElapsedTime] = useState(0) 
+    const [elapsedTime, setElapsedTime] = useState<number | undefined>(0)
 
-    const handleChange = (e: any) => {
-      if (time != 0){
-        setValue(e.target.value)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (time !== undefined && time !== 0) {
+          setValue(e.target.value);
+        }
       }
-    }
 
     useEffect(() => {
       let interval = null;
       if (isActive && time > 0) {
           interval = setInterval(() => {
-            setTime((prevTime) => (prevTime && prevTime > 0 ? prevTime - 1 : 0));
+            setTime((prevTime) => (prevTime && prevTime > 0 ? prevTime - 1 : 0))
           }, 1000);
           setElapsedTime((elapsedTime) => elapsedTime + 1)
       } else if (time <= 0) {
