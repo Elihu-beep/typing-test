@@ -22,7 +22,7 @@ export function Content() {
       }
 
     useEffect(() => {
-      let interval = null;
+      let interval = 0;
       if (isActive && time > 0) {
           interval = setInterval(() => {
             setTime((prevTime) => (prevTime && prevTime > 0 ? prevTime - 1 : 0))
