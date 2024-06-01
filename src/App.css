@@ -121,32 +121,28 @@ label {
 /* Footer */
 
 footer {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  color: rgb(65, 176, 110);
-  font-family: "Major Mono Display", monospace;
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.5em;
-  background-color: rgb(3, 6, 55, 0.3);
 }
 
 .AppFooter {
   display: flex;
+  height: 3em;
   justify-content: space-between;
+  width: 40em;
+  margin: 18em auto;
+  border-radius: 10px;
+  justify-content: center;
+  padding: 10px;
+  color: rgb(65, 176, 110);
+  font-family: "Major Mono Display", monospace;
 }
+
 
 
 /* Media queries */
-@media (max-width: 1250px) {
-  footer {
-    width: 90%;
-  }
-}
 
 @media (max-width: 768px) {
   .AppNav {
@@ -189,25 +185,11 @@ footer {
     font-size: 24px;
   }
 
-  .RightNav, .LeftNav {
-    font-size: 14px;
-  }
-
   main {
     padding-top: 5em;
     font-size: 14px;
-  }
-  
-  .CurrentWords {
-    max-width: 30em;
+    width: 50%;
+    margin-left: 8em;
   }
 
-  input {
-    max-width: 15em;
-    max-height: 2em;
-  }
-  .resetButton {
-    width: 5em;
-    height: 2.5em;
-  }
 }
