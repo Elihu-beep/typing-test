@@ -8,10 +8,10 @@ shuffle(words)
 export function Content() {
     const firstWords = words.slice(0,5)
     const [value, setValue] = useState('')
-    const [currentIndex] = useState(0)
+    const [currentIndex, setCurrentIndex] = useState(0)
     const [typedWords, setTypedWords] = useState([])
-    const [testWords, setTestWords]  = useState([])
-    const [time, setTime] = useState(30)
+    const [wordsShown, setWordsShown]  = useState([])
+    const [time, setTime] = useState(60)
     const [isActive, setIsActive] = useState(false)
     const [elapsedTime, setElapsedTime] = useState(0) 
 
@@ -19,7 +19,6 @@ export function Content() {
       if (time != 0){
         setValue(e.target.value)
       }
-        
     }
 
     useEffect(() => {
@@ -29,7 +28,6 @@ export function Content() {
               setTime((prevTime) => prevTime - 1);
           }, 1000);
           setElapsedTime((elapsedTime) => elapsedTime + 1)
-          console.log(elapsedTime)
       } else if (time <= 0) {
           setIsActive(false);
           clearInterval(interval);
@@ -38,13 +36,12 @@ export function Content() {
   }, [isActive, time]);
 
     useEffect(() => {
-      setTestWords(firstWords)
+        setWordsShown(firstWords)
 
       addEventListener("keypress", (e) => {setIsActive(true)})
 
         const handleKeyDown = (e) => {
             if (e.keyCode === 32) {
-                console.log("spacebar is working")
                 e.preventDefault()
                 checkWord()
             }
@@ -60,38 +57,37 @@ export function Content() {
         const currentWord: string = words[currentIndex];
         const typedWord = value.trim();
 
-        console.log("Current word: ", currentWord)
-        console.log("Typed word: ", typedWord)
-    
         if (typedWord === currentWord) {
           const newTypedWords = [...typedWords, typedWord];
           setTypedWords(newTypedWords);
           words.shift()
-          console.log(typedWords)
           setValue('');
+        } else {
+            words.shift()
+            setValue('');
         }
-        test()
       };
-
-      const test = () => {
-        const numOfNewTyped = typedWords.length + 1
-        console.log(numOfNewTyped)
-
-        if (numOfNewTyped === 5) {
-            console.log("ok")
-        }
-      }
     
+      const reset = () => {
+        shuffle(words)
+        setValue('')
+        setCurrentIndex(0)
+        setTypedWords([])
+        setTime(60)
+        setElapsedTime(0)
+        setIsActive(false);
+        setWordsShown(words.slice(0, 5));
+      }
 
     return(
         <main>
-            <div className="Layout">
+            <div>
                 <div className="Stats">
                     <p>Time: {time}</p>
-                    <p>WPM: {Math.round(typedWords.length / elapsedTime * 60)}</p>
+                    <p>WPM: {(elapsedTime === 0) ? 0 : (0 + Math.round(typedWords.length / elapsedTime * 60))}</p>
                 </div>
                 <div className="CurrentWords">
-                    {testWords.map((word, index) => (
+                    {wordsShown.map((word, index) => (
                         <div key={index} className={"words"}>
                             <div className={index === 0 ? "currentWord" : ""}>{word}</div>
                         </div>
@@ -101,7 +97,7 @@ export function Content() {
                     <label>
                         <input type="text" value={value} onChange={handleChange} />
                     </label>
-                    <ResetButton />
+                    <ResetButton onPress={reset} />
                 </div>
 
             </div>

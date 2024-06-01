@@ -7,7 +7,7 @@ export function Footer() {
                     <li>2024 Typing-test. All rights reserved</li>
                 </ul>
                 <ul className="FooterRight">
-                    <li>Github</li>
+                    <li><a href="https://github.com/Elihu-beep">GitHub</a></li>
                 </ul>
                 </div>
         </footer>

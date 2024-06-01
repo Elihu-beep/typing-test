@@ -6,7 +6,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 ul {
@@ -26,17 +27,19 @@ header {
 
 .AppNav {
   display: flex;
-  height: 4em;
+  height: 3em;
   justify-content: space-between;
   background-color: rgb(114, 4, 85, 0.5);
   border: 1px solid rgb(145, 10, 103);
-  width: 50em;
-  margin: 25px auto;
+  width: 40em;
+  margin: 30px auto;
   border-radius: 10px;
+  justify-content: center;
+  padding: 10px;
   
 }
 
-.LeftNav {
+.HeaderText {
   font-size: 24px;
   font-weight: 800;
   color: rgb(65, 176, 110);
@@ -44,30 +47,11 @@ header {
   font-size: 36px;
 }
 
-.RightNav {
-  font-size: 18px;
-  font-weight: 600;
-  gap: 40px;
-  padding-right: 20px;
-  font-family: "Major Mono Display", monospace;
-  font-weight: 400;
-}
-
-.RightNav :hover {
-  font-weight: 700;
-  color: rgb(255, 0, 0);
-}
-
-.Reset :hover {
-  background-color: red;
-}
-
 /* Content */
 
 main {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 50vh;
   font-family: "Major Mono Display", monospace;
   font-weight: 400;
@@ -78,8 +62,9 @@ input {
   border: 1px solid rgb(145, 10, 103);
   margin-top: 10px;
   height: 3em;
-  width: 38em;
+  width: 28em;
   border-radius: 10px;
+  font-size: 20px;
 }
 
 label {
@@ -147,7 +132,7 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5em;
-  background-color: rgb(3, 6, 55, 0.3); /* Optional: Add a background color for better visibility */
+  background-color: rgb(3, 6, 55, 0.3);
 }
 
 .AppFooter {
@@ -157,10 +142,8 @@ footer {
 
 
 /* Media queries */
-
 @media (max-width: 1250px) {
-
-  Footer {
+  footer {
     width: 90%;
   }
 }
@@ -168,50 +151,63 @@ footer {
 @media (max-width: 768px) {
   .AppNav {
     flex-direction: column;
-    width: 50%;
+    width: 80%;
     margin: 20px auto;
   }
 
-  .RightNav {
-    font-size: 16px;
-    gap: 20px;
-    padding-right: 10px;
+  .HeaderText {
+    font-size: 28px;
   }
 
-  .LeftNav {
-    font-size: 20px;
+  .RightNav, .LeftNav {
+    font-size: 16px;
   }
 
   .Reset {
-    width: 4em;
+    width: 6em;
     height: 2.5em;
   }
+  .CurrentWords {
+    max-width: 30em;
+  }
 
-  Footer {
+  input {
+    max-width: 15em;
+    max-height: 2em;
+  }
+  footer {
     width: 90%;
   }
 }
 
 @media (max-width: 480px) {
   .AppNav {
-    width: 90%;
+    width: 80%;
   }
 
-  .RightNav {
+  .HeaderText {
+    font-size: 24px;
+  }
+
+  .RightNav, .LeftNav {
     font-size: 14px;
-    gap: 10px;
-  }
-
-  .LeftNav {
-    font-size: 18px;
   }
 
   main {
     padding-top: 5em;
+    font-size: 14px;
+  }
+  
+  .CurrentWords {
+    max-width: 30em;
   }
 
-  .Reset {
+  input {
+    max-width: 15em;
+    max-height: 2em;
+  }
+  .resetButton {
     width: 5em;
-    height: 3em;
+    height: 2.5em;
   }
 }
