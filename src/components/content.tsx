@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { words } from "../assets/words";
-import { shuffle } from "../shuffle";
 import { ResetButton } from "./resetButton";
+import { shuffle } from "./shuffle";
 
 shuffle(words as string[])
 
@@ -11,9 +11,9 @@ export function Content() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [typedWords, setTypedWords] = useState<string[]>([])
     const [wordsShown, setWordsShown]  = useState<string[]>([])
-    const [time, setTime] = useState<number | undefined>(60)
+    const [time, setTime] = useState<number>(60)
     const [isActive, setIsActive] = useState(false)
-    const [elapsedTime, setElapsedTime] = useState<number | undefined>(0)
+    const [elapsedTime, setElapsedTime] = useState<number>(0)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (time !== undefined && time !== 0) {
@@ -36,7 +36,7 @@ export function Content() {
   }, [isActive, time]);
 
     useEffect(() => {
-        setWordsShown(firstWords)
+      setWordsShown([...firstWords])
 
       addEventListener("keypress", () => {setIsActive(true)})
 
